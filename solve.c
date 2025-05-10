@@ -6,7 +6,7 @@
 /*   By: nweber <nweber@student.42Heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:54:20 by nweber            #+#    #+#             */
-/*   Updated: 2025/05/10 16:46:09 by nweber           ###   ########.fr       */
+/*   Updated: 2025/05/10 21:14:08 by nweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	solve_recursive(char **board, int row, int column)
 	int	i;
 
 	i = 0;
-	while (i++ <= 4 && row <= 4 && column <= 4)
+	while (i <= 4 && row <= 4 && column <= 4)
 	{
 		if (!c_check(board, row, column, i) && !r_check(board, row, column, i))
 		{
@@ -34,18 +34,18 @@ void	solve_recursive(char **board, int row, int column)
 			if (column == 4)
 			{
 				if (left_view(board, row))
-					{
-						solve_recursive(board, row + 1, 1);
-						if (row == 4 && top_view(board, column))
-							print_solution(board);
-					}
+				{
+					solve_recursive(board, row + 1, 1);
+					if (row == 4 && top_view(board, column))
+						print_solution(board);
+				}
 			}
 		}
 		else
-		{
 			solve_recursive(board, row, column + 1);
-		}
+		i++;
 	}
+	print_solution(board);
 }
 
 void	solve(char **clues)

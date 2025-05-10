@@ -6,7 +6,7 @@
 /*   By: nweber <nweber@student.42Heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 14:24:51 by nweber            #+#    #+#             */
-/*   Updated: 2025/05/10 16:34:47 by nweber           ###   ########.fr       */
+/*   Updated: 2025/05/10 20:14:10 by nweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ int	parameter_check(char **str)
 	return (0);
 }
 
-int	c_check(char **board, int row, int column, int digit)
+int	c_check(char **board, int row, int column, int digits)
 {
 	int	i;
 
 	i = 1;
 	while (i < row)
 	{
-		if (board[i][column] == digit)
+		if (board[i][column] == digits + '0')
 		{
 			return (1);
 		}
@@ -59,7 +59,7 @@ int	r_check(char **board, int row, int column, int digits)
 	i = 1;
 	while (i < column)
 	{
-		if (board[row][i] == digits)
+		if (board[row][i] == digits + '0')
 		{
 			return (1);
 		}
