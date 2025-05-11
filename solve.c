@@ -6,7 +6,7 @@
 /*   By: nweber <nweber@student.42Heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:54:20 by nweber            #+#    #+#             */
-/*   Updated: 2025/05/10 21:14:08 by nweber           ###   ########.fr       */
+/*   Updated: 2025/05/11 11:20:09 by nweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,33 +19,35 @@ void	print_error(void);
 int		r_check(char **board, int row, int column, int digit);
 int		c_check(char **board, int row, int column, int digit);
 
-void	solve_recursive(char **board, int row, int column)
+#include <unistd.h>
+
+int	solve_recursive(char **board, int row, int column)
 {
 	int	i;
 
-	i = 0;
-	while (i <= 4 && row <= 4 && column <= 4)
+	i = 1;
+	if (row > 4)
+		return (1);
+	while (i <= 4)
 	{
 		if (!c_check(board, row, column, i) && !r_check(board, row, column, i))
 		{
 			board[row][column] = i + '0';
-			if (row == 4 && !top_view(board, column))
-				return ;
-			if (column == 4)
-			{
-				if (left_view(board, row))
-				{
-					solve_recursive(board, row + 1, 1);
-					if (row == 4 && top_view(board, column))
-						print_solution(board);
-				}
-			}
+			print_solution(board);
+			write (1, "\n", 1);
+			if (column == 4 && (!top_view(board, column)
+				|| !left_view(board, row)))
+				board[row][column] = '0';
+			else if(column == 4 && solve_recursive(board, row + 1, 1))
+				return (1);
+			else if(column != 4 && solve_recursive(board, row, column + 1))
+				return (1);
+			else
+				board[row][column] = '0';
 		}
-		else
-			solve_recursive(board, row, column + 1);
 		i++;
 	}
-	print_solution(board);
+	return (0);
 }
 
 void	solve(char **clues)
@@ -54,9 +56,5 @@ void	solve(char **clues)
 
 	board = board_creation();
 	set_clues(board, clues);
-	solve_recursive(board, 1, 1);
-	if (board[0][0] == '0')
-	{
-		print_error();
-	}
 }
+
