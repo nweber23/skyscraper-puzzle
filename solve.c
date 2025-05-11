@@ -6,7 +6,7 @@
 /*   By: nweber <nweber@student.42Heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:54:20 by nweber            #+#    #+#             */
-/*   Updated: 2025/05/11 11:20:09 by nweber           ###   ########.fr       */
+/*   Updated: 2025/05/11 12:12:57 by nweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,29 @@ int		c_check(char **board, int row, int column, int digit);
 
 #include <unistd.h>
 
+int	check(char **board)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i <= 4)
+	{
+		j = 1;
+		while (j <= 4)
+		{
+			if (board[i][j] == '0')
+			{
+				if (top_view(board, j))
+					return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	solve_recursive(char **board, int row, int column)
 {
 	int	i;
@@ -33,8 +56,8 @@ int	solve_recursive(char **board, int row, int column)
 		if (!c_check(board, row, column, i) && !r_check(board, row, column, i))
 		{
 			board[row][column] = i + '0';
-			print_solution(board);
-			write (1, "\n", 1);
+			if (!check(board))
+				print_solution(board);
 			if (column == 4 && (!top_view(board, column)
 				|| !left_view(board, row)))
 				board[row][column] = '0';
@@ -56,5 +79,7 @@ void	solve(char **clues)
 
 	board = board_creation();
 	set_clues(board, clues);
+	solve_recursive(board, 1, 1);
+	if (board[0][0] == '0')
+		print_error();
 }
-

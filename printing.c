@@ -6,7 +6,7 @@
 /*   By: nweber <nweber@student.42Heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:09:20 by nweber            #+#    #+#             */
-/*   Updated: 2025/05/11 10:04:01 by nweber           ###   ########.fr       */
+/*   Updated: 2025/05/11 12:03:11 by nweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,9 @@ void	print_solution(char **board)
 	int	j;
 
 	i = 1;
-	// if (board[0][0] == '1')
-	// {
-	// 	return ;
-	// }
-	// board[0][0] = '1';
+	if (board[0][0] == '1')
+		return ;
+	board[0][0] = '1';
 	while (i <= 4)
 	{
 		j = 1;
