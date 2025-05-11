@@ -6,7 +6,7 @@
 /*   By: nweber <nweber@student.42Heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:54:07 by nweber            #+#    #+#             */
-/*   Updated: 2025/05/11 17:20:16 by nweber           ###   ########.fr       */
+/*   Updated: 2025/05/11 17:59:28 by nweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	bottom_view(char **board, int column)
 		}
 		i--;
 	}
-	return (board[i][column] == visible);
+	return (board[5][column] == visible);
 }
 
 int	top_view(char **board, int column)
