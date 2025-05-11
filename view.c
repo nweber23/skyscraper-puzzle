@@ -6,7 +6,7 @@
 /*   By: nweber <nweber@student.42Heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:54:07 by nweber            #+#    #+#             */
-/*   Updated: 2025/05/11 09:49:52 by nweber           ###   ########.fr       */
+/*   Updated: 2025/05/11 17:20:16 by nweber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	left_view(char **board, int row)
 	i = 1;
 	while (i <= 4)
 	{
-		if(board[row][i] == '0')
+		if (board[row][i] == '0')
 			return (1);
 		i++;
 	}
